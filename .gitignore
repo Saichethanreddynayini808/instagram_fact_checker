@@ -1,0 +1,23 @@
+# secrets
+.env
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+.import_linter_cache/
+
+# local data (cache and saved reports are rebuilt, never committed)
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+data/media/
+
+# editor / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini

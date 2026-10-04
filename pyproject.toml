@@ -1,0 +1,35 @@
+[project]
+name = "factchecker"
+version = "0.1.0"
+description = "AI fact-checker: claims in, cited verdicts out."
+readme = "README.md"
+requires-python = ">=3.10,<4.0"
+# Left empty on purpose: add packages with `poetry add` so Poetry resolves
+# current versions and writes them here (see README, Step 0).
+dependencies = ["pydantic (>=2.13.5,<3.0.0)", "pydantic-settings (>=2.15.0,<3.0.0)", "openai (>=3.24.0,<4.0.0)", "httpx (>=0.28.1,<0.29.0)"]
+
+[tool.poetry]
+packages = [{ include = "app" }]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+# Enforces the one-way import rule. Run: poetry run lint-imports
+[tool.importlinter]
+root_package = "app"
+
+[[tool.importlinter.contracts]]
+name = "Imports point one way only"
+type = "layers"
+layers = [
+    "app.main",
+    "app.pipeline",
+    "app.stages | app.ingest",
+    "app.tools | app.credibility | app.scoring | app.storage",
+    "app.schemas : app.config : app.log",
+]

@@ -1,0 +1,25 @@
+# Fixed credibility table. Score = how much weight a source gets in confidence.
+# lookup.py matches a URL's domain (and parent domains) against `domains`.
+default: 0.30
+tiers:
+  - name: international_bodies
+    score: 0.95
+    domains: [imf.org, who.int, worldbank.org, un.org, oecd.org]
+  - name: peer_reviewed
+    score: 0.90
+    domains: [nature.com, science.org, thelancet.com, nejm.org, ncbi.nlm.nih.gov]
+  - name: fact_checkers
+    score: 0.88
+    domains: [snopes.com, politifact.com, factcheck.org, fullfact.org]
+  - name: wire_services
+    score: 0.82
+    domains: [reuters.com, apnews.com, afp.com]
+  - name: newspapers
+    score: 0.75
+    domains: [bbc.com, bbc.co.uk, nytimes.com, theguardian.com, washingtonpost.com]
+  - name: wikipedia
+    score: 0.55
+    domains: [wikipedia.org]
+  - name: social_media
+    score: 0.10
+    domains: [x.com, twitter.com, facebook.com, instagram.com, tiktok.com, reddit.com]
